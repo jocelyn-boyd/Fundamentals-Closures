@@ -47,6 +47,12 @@ Input: `let numbers = [4, 7, 1, 9, 6, 5, 6, 9]`
 
 Output: `9`
 
+```swift
+let numbers = [4, 7, 1, 9, 6, 5, 6, 9]
+let reduceToFindLargestNumber = numbers.reduce(0, { x, y in return x > y ? x : y})
+//ternary operator -> condition ? true : false 
+print(reduceToFindLargestNumber)
+```
 
 ## Question 4
 
@@ -57,6 +63,11 @@ Input: `let strings = ["We", "Heart", "Swift"]`
 
 Output: `"We Heart Swift"`
 
+```swift
+let strings = ["We", "Heart", "Swift"]
+let reducedStrings = strings.reduce("", { $0 + " " + $1 })
+print(reducedStrings)
+```
 
 ## Question 5
 
