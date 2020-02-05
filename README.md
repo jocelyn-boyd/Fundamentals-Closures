@@ -24,7 +24,15 @@ Hello Closures!
 Hello Closures!
 Hello Closures!
 ```
-
+Answer:
+```swift
+func applyKTimes(_ K: Int,_ closure:() -> ()) {
+  for _ in 1...K {
+    closure()
+  }
+}
+applyKTimes(5) { print("Hello Closures!") }
+```
 
 ## Question 2
 
@@ -37,6 +45,12 @@ Input: `let numbers = [1, 2, 3, 4, 6, 8, 9, 3, 12, 11]`
 
 Expected values: `multiples = [3, 6, 9, 3, 12]`
 
+Answer:
+```swift
+var multiples = numbers2.filter { $0 % 3 == 0 }
+print(multiples)
+```
+
 
 ## Question 3
 
@@ -47,11 +61,11 @@ Input: `let numbers = [4, 7, 1, 9, 6, 5, 6, 9]`
 
 Output: `9`
 
+Answer:
 ```swift
-let numbers = [4, 7, 1, 9, 6, 5, 6, 9]
-let reduceToFindLargestNumber = numbers.reduce(0, { x, y in return x > y ? x : y})
-//ternary operator -> condition ? true : false 
-print(reduceToFindLargestNumber)
+let findTheLargestNumber = numbers.reduce(0, {(x, y) in return x > y ? x : y })
+//ternary operator -> condition ? true : false
+print(findTheLargestNumber)
 ```
 
 ## Question 4
@@ -63,10 +77,10 @@ Input: `let strings = ["We", "Heart", "Swift"]`
 
 Output: `"We Heart Swift"`
 
+Answer:
 ```swift
-let strings = ["We", "Heart", "Swift"]
-let reducedStrings = strings.reduce("", { $0 + " " + $1 })
-print(reducedStrings)
+var joinedStrings = strings.reduce("", { if $0 == "" {return $1} else {return $0 + " " + $1}})
+print(joinedStrings)
 ```
 
 ## Question 5
@@ -74,10 +88,23 @@ print(reducedStrings)
 `let cities = ["Shanghai", "Beijing", "Delhi", "Lagos", "Tianjin", "Karachi", "Karachi", "Tokyo", "Guangzhou", "Mumbai", "Moscow", "São Paulo"]`
 
 a. Use `sortedBy` to sort `cities` in alphabetical order.
+```swift
+let sortedCitiesA = cities.sorted(by: { $0 < $1} )
+print(sortedCitiesA)
+```
 
 b. Use `sortedBy` to sort `cities` alphabetical order of the second character of the city name.
+```swift
+let dropFirsLetter = { (string: String) -> String in return "\(string.dropFirst())" }
+let sortedCitiesB = cities.sorted(by: { dropFirsLetter($0) < dropFirsLetter($1) })
+print(sortedCitiesB)
+```
 
 c. Use `sortedBy` to sort `cities` in order of the length of the city name.
+```swift
+let sortedCitiesC = cities.sorted(by: {$0.count < $1.count } )
+print(sortedCitiesC)
+```
 
 
 ## Question 6
@@ -85,9 +112,16 @@ c. Use `sortedBy` to sort `cities` in order of the length of the city name.
 `let citiesWithPopulation: [(String, Int)] = [("Shanghai", 24256800), ("Beijing", 21516000), ("Delhi", 16787941), ("Lagos", 16060303), ("Tianjin", 15200000), ("Karachi", 14910352), ("Karachi", 14160467), ("Tokyo", 13513734), ("Guangzhou", 13080500), ("Mumbai", 12442373), ("Moscow", 12380664), ("São Paulo", 12038175)]`
 
 a. Use `sortedBy` to sort `citiesWithPopulation` in ascending order of population.
+```swift
+let ascendingOrderByPopulation =  citiesWithPopulation.sorted { $0.1 < $1.1 }
+print(ascendingOrderByPopulation)
+```
 
 b. Use `sortedBy` to sort `citiesWithPopulation` in reverse alphabetical order of the last character in the city name.
-
+```swift
+let reverseCitiesByLastCharacter = citiesWithPopulation.sorted {"\($0.0.last)" > "\($1.0.last)"}
+print(reverseCitiesByLastCharacter)
+```
 
 ## Question 7
 
@@ -109,7 +143,21 @@ numbers = [1, 2, 3, 5, 4, 6]
 
 // [1, 5, 2, 3, 4, 6] would also have been a valid solution
 ```
+Answer:
+```swift
+let numberOfDivisors = {(num: Int) -> Int in
+  var count = 0
+  for i in 1...num {
+    if num % i == 0 {
+      count += 1
+    }
+  }
+  return count
+}
 
+let ascendingOrderByNumOfDivisors = numbers.sorted(by: {numberOfDivisors($0) < numberOfDivisors($1)})
+print(ascendingOrderByNumOfDivisors)
+```
 
 ## Question 8
 
@@ -118,10 +166,22 @@ Find the sum of the squares of all the odd numbers from `numbers` and then print
 `var numbers = [1, 2, 3, 4, 5, 6]`
 
 a. Write code that removes all the odd numbers from the array.
+```swift
+let removedOddNumbers = numbers.filter { $0 % 2 == 0 }
+print("Only Even Numbers: \(removedOddNumbers)")
+```
 
 b. Write code that squares all the numbers in the array.
+```swift
+let squaredEvenNumbers = removedOddNumbers.map { $0 * $0 }
+print(squaredEvenNumbers)
+```
 
 c. Write code that finds the sum of the array.
+```swift
+let findSumOfArray = squaredEvenNumbers.reduce(0) { (x, y) in x + y }
+print("Sum of Sqaured Numbers: \(findSumOfArray)")
+```
 
 d. Now use `map`, `filter` and `reduce` to solve this problem.
 
@@ -130,6 +190,10 @@ Input: `var numbers = [1, 2, 3, 4, 5, 6]`
 
 Output: `35 // 1 + 9 + 25 -> 35`
 
+```swift
+let sumOfOddSquaredArray = numbers.filter({ $0 % 2 != 0}).map{($0 * $0)}.reduce(0) { (x, y) in x + y }
+print(oddSquaredSum)
+```
 
 ## Question 9
 
