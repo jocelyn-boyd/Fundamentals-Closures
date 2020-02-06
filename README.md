@@ -217,6 +217,18 @@ Output:
 16
 ```
 
+Answer:
+```
+func forEach(array: [Int], _ closure: (Int) -> () ) {
+  for i in array {
+    closure(i)
+  }
+}
+
+forEach(array: [1,2,3,4]) {
+  print($0 * $0)
+}
+```
 ## Question 10
 
 Implement a function `combineArrays` that takes 2 arrays and a closure that combines 2 Ints into a single Int. The function combines the two arrays into a single array using the provided closure. Assume that the 2 arrays have equal length.
@@ -234,6 +246,22 @@ combineArrays(array1,array2) {
 
 Output: `[5,10,15,12]`
 
+Answer:
+
+```swift
+
+func combineArrays(array1: [Int], array2: [Int], _ closure: (Int,Int) -> Int ) -> [Int] {
+  
+  var answer = [Int]()
+  
+  for index in 0...array1.count - 1 {
+    answer.append(closure(array1[index], array2[index]))
+  }
+  return answer
+}
+
+print(combineArrays(array1: array1, array2: array2, {$0 * $1 }))
+```
 
 ## Question 11
 
