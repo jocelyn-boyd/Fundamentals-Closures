@@ -268,11 +268,42 @@ a) Write a function called `intsToStrings` that takes an array of Ints and a clo
 
 `let theInts = [1, 2, 3, 44, 555, 6600, 10763]`
 
+Solution:
+```swift
+func intsToStrings(array: [Int], _ closure: (Int) -> String) -> [String] {
+  
+  var answer = [String]()
+  for n in array {
+    answer.append(closure(n))
+  }
+  return answer
+}
+```
+
 b) Define a closure assigned to a constant called `asString` that just turns an Int to a String and pass it to `intsToStrings`.
+```swift
+intsToStrings(array: theInts) { (asString) -> String in
+  return "\(asString)"
+}
+```
 
 c) Define a closure assigned to a constant called `evenOdd` that returns "odd" or "even" if the Int is odd or even and pass it to `intsToStrings`.
+```swift
+let evenOdd = {
+  (num: Int) -> String in
+  if num % 2 != 0 {
+    return "odd"
+  } else {
+    return "even"
+  }
+}
+
+intsToStrings(array: theInts, evenOdd)
+```
 
 d) Define a closure assigned to a constant called `englishWords` that returns the written english word of each digit in an Int, 234 -> "two three four", and pass it to `intsToStrings`.
+```swift
+```
 
 e) Use the built in `map` method on `theInts` to recreate the answers for b, c and d.
 
@@ -292,7 +323,6 @@ a) ["1", "2", "3", "44", "555", "6600", "10763"]
 b) ["odd", "even", "odd", "even", "odd", "even", "odd"]
 c) ["one ", "two ", "three ", "four four ", "five five five ", "six six zero zero ", "one zero seven six three "]
 ```
-
 
 ## Question 12
 
