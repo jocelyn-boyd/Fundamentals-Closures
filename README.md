@@ -24,7 +24,7 @@ Hello Closures!
 Hello Closures!
 Hello Closures!
 ```
-Answer:
+Solution:
 ```swift
 func applyKTimes(_ K: Int,_ closure:() -> ()) {
   for _ in 1...K {
@@ -45,7 +45,7 @@ Input: `let numbers = [1, 2, 3, 4, 6, 8, 9, 3, 12, 11]`
 
 Expected values: `multiples = [3, 6, 9, 3, 12]`
 
-Answer:
+Solution:
 ```swift
 var multiples = numbers2.filter { $0 % 3 == 0 }
 print(multiples)
@@ -61,7 +61,7 @@ Input: `let numbers = [4, 7, 1, 9, 6, 5, 6, 9]`
 
 Output: `9`
 
-Answer:
+Solution:
 ```swift
 let findTheLargestNumber = numbers.reduce(0, {(x, y) in return x > y ? x : y })
 //ternary operator -> condition ? true : false
@@ -77,7 +77,7 @@ Input: `let strings = ["We", "Heart", "Swift"]`
 
 Output: `"We Heart Swift"`
 
-Answer:
+Solution:
 ```swift
 var joinedStrings = strings.reduce("", { if $0 == "" {return $1} else {return $0 + " " + $1}})
 print(joinedStrings)
@@ -143,7 +143,7 @@ numbers = [1, 2, 3, 5, 4, 6]
 
 // [1, 5, 2, 3, 4, 6] would also have been a valid solution
 ```
-Answer:
+Solution:
 ```swift
 let numberOfDivisors = {(num: Int) -> Int in
   var count = 0
@@ -217,7 +217,7 @@ Output:
 16
 ```
 
-Answer:
+Solution:
 ```
 func forEach(array: [Int], _ closure: (Int) -> () ) {
   for i in array {
@@ -246,10 +246,9 @@ combineArrays(array1,array2) {
 
 Output: `[5,10,15,12]`
 
-Answer:
+Solution:
 
 ```swift
-
 func combineArrays(array1: [Int], array2: [Int], _ closure: (Int,Int) -> Int ) -> [Int] {
   
   var answer = [Int]()
